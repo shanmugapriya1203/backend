@@ -42,7 +42,7 @@ router.post("/register", async (req, res) => {
 
   router.post("/login", async (req, res) => {
     try {
-      const user = await UserDB.findOne({ email: req.body.email });
+      let user = await UserDB.findOne({ email: req.body.email });
       if (user) {
         bcrypt.compare(req.body.password, user.password, (err, result) => {
           if (err) throw new Error("Invalid Credentials");
@@ -51,9 +51,9 @@ router.post("/register", async (req, res) => {
             const token = Jwt.sign({ _id: user._id }, "blogSecret", {
               expiresIn: "10h",
             });
-            user.token = token;
-  
-            res.status(200).send(user);
+          
+            res.status(200).send({user:user,token:token});
+            
           } else {
             res.status(404).send("Invalid Credentials");
           }
