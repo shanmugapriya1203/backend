@@ -27,7 +27,7 @@ console.log(err)
 })
 app.use('/user',userRoute)
 app.use('/fit',fitnessRoute);
-const PORT=process.env.PORT
+const PORT=process.env.PORT || 8000;
 app.listen(PORT,()=>{
   console.log(`Server is running on port ${process.env.PORT}`)
 })
