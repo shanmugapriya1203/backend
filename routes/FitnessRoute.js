@@ -17,7 +17,7 @@ router.post('/fitnessActivity/:email', authUser, async (req, res) => {
       notes,
     });
     await newFitnessActivity.save();
-    res.status(200).json({ message: 'Fitness activity saved successfully.' });
+    res.status(200).json({ message: 'Fitness activity saved successfull.' });
   } catch (error) {
     res.status(500).json({ message: 'Error saving fitness activity data.' });
     console.log(error)
